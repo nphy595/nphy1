@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多项式除法计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .polynomial-division-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .polynomial-inputs {
+            margin-bottom: 20px;
+        }
+
+        .polynomial-input-group {
+            margin-bottom: 20px;
+        }
+
+        .degree-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .degree-label {
+            margin-right: 10px;
+        }
+
+        .coefficients-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .coefficient-input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .coefficient-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .power-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .result-display {
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .polynomial-display {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="polynomial-division-container">
+            <h1>多项式除法计算器</h1>
+            <button id="back-to-math-tools" class="back-to-math-tools" style="margin-bottom: 20px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">← 返回数学工具</button>
+            <p>执行多项式除法运算，得到商式和余式。</p>
+
+            <div class="polynomial-inputs">
+                <div class="polynomial-input-group">
+                    <h3>被除数多项式 (P(x))</h3>
+                    <div class="degree-control">
+                        <span class="degree-label">次数:</span>
+                        <select id="dividend-degree">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div id="dividend-coefficients" class="coefficients-input">
+                        <!-- 系数输入框将通过 JavaScript 动态添加 -->
+                    </div>
+                </div>
+
+                <div class="polynomial-input-group">
+                    <h3>除数多项式 (D(x))</h3>
+                    <div class="degree-control">
+                        <span class="degree-label">次数:</span>
+                        <select id="divisor-degree">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div id="divisor-coefficients" class="coefficients-input">
+                        <!-- 系数输入框将通过 JavaScript 动态添加 -->
+                    </div>
+                </div>
+            </div>
+
+            <button id="divide-polynomials" class="btn equals">执行除法</button>
+
+            <div class="result-display">
+                <h3>结果:</h3>
+                <div id="division-result">
+                    <p>商式 (Q(x)):</p>
+                    <div id="quotient-display" class="polynomial-display">0</div>
+                    <p>余式 (R(x)):</p>
+                    <div id="remainder-display" class="polynomial-display">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+            // 返回数学工具页面
+            document.getElementById('back-to-math-tools').addEventListener('click', function() {
+                window.location.href = 'math_tools.html';
+            });
+        </script>
+        <script src="polynomial_division.js"></script>
+</body>
+</html>

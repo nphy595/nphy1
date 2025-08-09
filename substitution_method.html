@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方程替代法计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .substitution-method-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .equation-input-group {
+            margin-bottom: 20px;
+        }
+
+        .equation-input-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .equation-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .solve-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .clear-button {
+            background-color: #ffcccc;
+            color: #cc0000;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .result-display {
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .process-container {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .tool-description {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="substitution-method-container">
+            <h1>方程替代法计算器</h1>
+            <button id="back-to-math-tools" class="back-to-math-tools" style="margin-bottom: 20px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">← 返回数学工具</button>
+            <p>使用替代法（消元法）解二元一次方程组</p>
+
+            <div class="equation-input-group">
+                <h3>输入二元一次方程组</h3>
+                <p>支持格式: 2x + 3y = 7 或 2*x + 3*y = 7</p>
+
+                <label for="equation1" class="equation-input-label">方程1:</label>
+                <input type="text" id="equation1" class="equation-input" placeholder="例如: 2x + 3y = 7">
+
+                <label for="equation2" class="equation-input-label">方程2:</label>
+                <input type="text" id="equation2" class="equation-input" placeholder="例如: x - y = 1">
+            </div>
+
+            <button id="solve-equation" class="solve-button">求解方程组</button>
+            <button id="clear-equation" class="clear-button">清空</button>
+
+            <div class="result-display">
+                <h3>求解结果:</h3>
+                <div id="solution-result"></div>
+            </div>
+
+            <h3>计算过程:</h3>
+            <div id="calculation-process" class="process-container">
+                <!-- 计算过程将在这里显示 -->
+            </div>
+
+            <div class="tool-description">
+                <h3>使用说明:</h3>
+                <ul>
+                    <li>输入标准的二元一次方程，如: 2x + 3y = 7</li>
+                    <li>支持负数和小数，如: -1.5x + 2.5y = 3</li>
+                    <li>变量只能使用x和y</li>
+                    <li>系统会自动选择最优的消元变量</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+            // 返回数学工具页面
+            document.getElementById('back-to-math-tools').addEventListener('click', function() {
+                window.location.href = 'math_tools.html';
+            });
+        </script>
+        <script src="substitution_method.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方程组计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .equation-solver-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .equation-form {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .equation-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .variable-input {
+            width: 60px;
+            padding: 8px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .equals-sign {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .result-value {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .solution-display {
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .equation-type-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .load-example-link {
+            color: #0066cc;
+            text-decoration: none;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .solve-button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .result-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .copy-button, .clear-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .copy-button {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .clear-button {
+            background-color: #ffcccc;
+            color: #cc0000;
+        }
+
+        .tool-description {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="equation-solver-container">
+            <h1>方程组计算器</h1>
+            <button id="back-to-math-tools" class="back-to-math-tools" style="margin-bottom: 20px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">← 返回数学工具</button>
+            <p>求解线性方程组，支持任意数量的变量和方程。</p>
+
+            <div class="equation-type-container">
+                <label for="equation-type">方程组类型:</label>
+                <select id="equation-type" class="equation-type-select">
+                    <option value="2x2">二元线性方程组 (2x2)</option>
+                    <option value="3x3">三元线性方程组 (3x3)</option>
+                    <option value="custom">自定义方程组</option>
+                </select>
+                <a href="#" id="load-example" class="load-example-link">载入示例方程组</a>
+            </div>
+
+            <div class="button-group">
+                <button id="add-equation" class="btn function">添加方程</button>
+                <button id="remove-equation" class="btn function">移除方程</button>
+                <button id="add-variable" class="btn function">添加变量</button>
+                <button id="remove-variable" class="btn function">移除变量</button>
+            </div>
+
+            <div id="equations-container" class="equation-form">
+                <!-- 方程将通过 JavaScript 动态添加 -->
+            </div>
+
+            <button id="solve-equations" class="solve-button">求解方程组</button>
+
+            <div id="solution" class="solution-display">
+                <h3>计算结果:</h3>
+                <div id="solution-result">点击求解按钮开始计算...</div>
+                <div class="result-controls">
+                    <button id="copy-result" class="copy-button">复制结果</button>
+                    <button id="clear-result" class="clear-button">清空</button>
+                </div>
+            </div>
+
+            <div class="tool-description">
+                <h3>工具说明</h3>
+                <p>本工具用于求解线性方程组，支持自定义变量和方程数量。</p>
+                <p>对于有唯一解的方程组，将显示精确解；对于无解或无穷多解的情况，会给出相应提示。</p>
+            </div>
+        </div>
+    </div>
+    <script>
+            // 返回数学工具页面
+            document.getElementById('back-to-math-tools').addEventListener('click', function() {
+                window.location.href = 'math_tools.html';
+            });
+        </script>
+        <script src="equation_solver.js"></script>
+</body>
+</html>

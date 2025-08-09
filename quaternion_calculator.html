@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四元数计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quaternion-calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .quaternion-inputs {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .quaternion-input-group {
+            flex: 1;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-label {
+            width: 20px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .quaternion-input {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .operation-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .binary-operation-btn {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .unary-operation-btn {
+            background-color: #34a853;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .unitary-operation-btn {
+            background-color: #ea4335;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .conversion-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .conversion-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+        }
+
+        .rotation-matrix-btn {
+            background-color: #1a73e8;
+        }
+
+        .euler-angles-btn {
+            background-color: #d93025;
+        }
+
+        .from-euler-btn {
+            background-color: #fbbc05;
+        }
+
+        .result-display {
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .result-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .copy-button, .clear-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .copy-button {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .clear-button {
+            background-color: #ffcccc;
+            color: #cc0000;
+        }
+
+        .tool-description {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="quaternion-calculator-container">
+            <h1>四元数计算器</h1>
+            <button id="back-to-math-tools" class="back-to-math-tools" style="margin-bottom: 20px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">← 返回数学工具</button>
+            <p>进行四元数的基本运算、转换与插值。</p>
+
+            <div class="quaternion-inputs">
+                <div class="quaternion-input-group">
+                    <h3>四元数 A</h3>
+                    <div class="input-row">
+                        <span class="input-label">w:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q1-w" value="1">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">x:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q1-x" value="0">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">y:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q1-y" value="0">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">z:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q1-z" value="0">
+                    </div>
+                    <p style="font-size: 12px; color: #666;">w + xi + yj + zk</p>
+                </div>
+
+                <div class="quaternion-input-group">
+                    <h3>四元数 B</h3>
+                    <div class="input-row">
+                        <span class="input-label">w:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q2-w" value="0">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">x:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q2-x" value="1">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">y:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q2-y" value="0">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">z:</span>
+                        <input type="number" step="any" class="quaternion-input" id="q2-z" value="0">
+                    </div>
+                    <p style="font-size: 12px; color: #666;">w + xi + yj + zk</p>
+                </div>
+            </div>
+
+            <div class="operation-buttons">
+                <button class="binary-operation-btn" id="add-quaternions">A + B</button>
+                <button class="binary-operation-btn" id="subtract-quaternions">A - B</button>
+                <button class="binary-operation-btn" id="multiply-quaternions">A × B</button>
+                <button class="binary-operation-btn" id="divide-quaternions">A ÷ B</button>
+            </div>
+
+            <h3>单元运算</h3>
+            <div class="operation-buttons">
+                <button class="unary-operation-btn" id="conjugate-q1">共轭 A*</button>
+                <button class="unary-operation-btn" id="magnitude-q1">模长 |A|</button>
+                <button class="unitary-operation-btn" id="normalize-q1">单位化</button>
+                <button class="unitary-operation-btn" id="inverse-q1">逆 A⁻¹</button>
+            </div>
+
+            <h3>转换功能</h3>
+            <div class="conversion-buttons">
+                <button class="conversion-btn rotation-matrix-btn" id="to-rotation-matrix">旋转矩阵</button>
+                <button class="conversion-btn euler-angles-btn" id="to-euler-angles">转欧拉角(°)</button>
+                <button class="conversion-btn from-euler-btn" id="from-euler-angles">从欧拉角生成</button>
+            </div>
+
+            <div class="result-display">
+                <h3>计算结果将显示在这里...</h3>
+                <div id="quaternion-result">
+                    <p>w: 0</p>
+                    <p>x: 0</p>
+                    <p>y: 0</p>
+                    <p>z: 0</p>
+                </div>
+                <div class="result-controls">
+                    <button id="copy-result" class="copy-button">复制</button>
+                    <button id="clear-result" class="clear-button">清空</button>
+                </div>
+            </div>
+
+            <div class="tool-description">
+                <h3>工具说明</h3>
+                <p>四元数运算、转换与插值</p>
+            </div>
+        </div>
+    </div>
+    <script>
+            // 返回数学工具页面
+            document.getElementById('back-to-math-tools').addEventListener('click', function() {
+                window.location.href = 'math_tools.html';
+            });
+        </script>
+        <script src="quaternion_calculator.js"></script>
+</body>
+</html>

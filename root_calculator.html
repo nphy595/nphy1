@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>根计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .root-calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .number-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .select-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: white;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-label {
+            margin-left: 5px;
+        }
+
+        .calculate-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .results-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .result-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .result-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .result-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            min-height: 40px;
+        }
+
+        .history-container {
+            margin-bottom: 20px;
+        }
+
+        .history-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .history-box {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .copy-result-button {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .copy-radical-button {
+            background-color: #ccffcc;
+            color: #006600;
+        }
+
+        .clear-history-button {
+            background-color: #ffffcc;
+            color: #996600;
+        }
+
+        .clear-all-button {
+            background-color: #ffcccc;
+            color: #cc0000;
+        }
+
+        .tool-description {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="root-calculator-container">
+            <h1>根计算器</h1>
+            <button id="back-to-math-tools" class="back-to-math-tools" style="margin-bottom: 20px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">← 返回数学工具</button>
+
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="radicand" class="input-label">被开方数:</label>
+                    <input type="text" id="radicand" class="number-input" placeholder="输入被开方数">
+                </div>
+                <div class="input-field">
+                    <label for="root-index" class="input-label">根指数:</label>
+                    <select id="root-index" class="select-input">
+                        <option value="2">平方根 (√)</option>
+                        <option value="3">立方根 (∛)</option>
+                        <option value="4">四次根</option>
+                        <option value="5">五次根</option>
+                        <option value="6">六次根</option>
+                        <option value="7">七次根</option>
+                        <option value="8">八次根</option>
+                        <option value="9">九次根</option>
+                        <option value="10">十次根</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="precision" class="input-label">计算精度:</label>
+                    <select id="precision" class="select-input">
+                        <option value="10">10位小数</option>
+                        <option value="5">5位小数</option>
+                        <option value="3">3位小数</option>
+                        <option value="1">1位小数</option>
+                    </select>
+                </div>
+                <div class="input-field checkbox-group">
+                    <input type="checkbox" id="simplify" checked>
+                    <label for="simplify" class="checkbox-label">显示化简形式</label>
+                </div>
+            </div>
+
+            <button id="calculate" class="calculate-button">计算根值</button>
+
+            <div class="results-container">
+                <div class="result-field">
+                    <label for="result" class="result-label">计算结果:</label>
+                    <div id="result" class="result-input">等待计算...</div>
+                </div>
+                <div class="result-field">
+                    <label for="radical-form" class="result-label">根式形式:</label>
+                    <div id="radical-form" class="result-input" style="background-color: #e6ffe6;">等待计算...</div>
+                </div>
+            </div>
+
+            <div class="history-container">
+                <label for="history" class="history-label">计算历史:</label>
+                <div id="history" class="history-box">暂无计算记录</div>
+            </div>
+
+            <div class="button-group">
+                <button id="copy-result" class="action-button copy-result-button">复制结果</button>
+                <button id="copy-radical" class="action-button copy-radical-button">复制根式</button>
+                <button id="clear-history" class="action-button clear-history-button">清除历史</button>
+                <button id="clear-all" class="action-button clear-all-button">全部清空</button>
+            </div>
+
+            <div class="tool-description">
+                <h3>工具说明</h3>
+                <p>计算平方根、立方根和任意次根</p>
+            </div>
+        </div>
+    </div>
+    <script>
+            // 返回数学工具页面
+            document.getElementById('back-to-math-tools').addEventListener('click', function() {
+                window.location.href = 'math_tools.html';
+            });
+        </script>
+        <script src="root_calculator.js"></script>
+</body>
+</html>

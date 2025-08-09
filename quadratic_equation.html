@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二次方程计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quadratic-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .number-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .calculate-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .info-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .info-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .solution-container {
+            background-color: #e6ffe6;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .solution-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #006600;
+        }
+
+        .solution-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: white;
+            margin-bottom: 10px;
+        }
+
+        .steps-container {
+            background-color: #fff9e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .steps-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #996600;
+        }
+
+        .steps-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .steps-list li {
+            margin-bottom: 5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .copy-button {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .reset-button {
+            background-color: #ffcccc;
+            color: #cc0000;
+        }
+
+        .tool-description {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="quadratic-container">
+            <h1>二次方程计算器</h1>
+            <button id="back-to-math-tools" class="back-to-math-tools" style="margin-bottom: 20px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">← 返回数学工具</button>
+
+            <div class="equation-form">二次方程: ax² + bx + c = 0</div>
+            <div class="input-hint">请输入方程系数，其中a不能为0</div>
+
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="coefficient-a" class="input-label">系数 a:</label>
+                    <input type="text" id="coefficient-a" class="number-input" placeholder="输入系数a" value="1">
+                </div>
+                <div class="input-field">
+                    <label for="coefficient-b" class="input-label">系数 b:</label>
+                    <input type="text" id="coefficient-b" class="number-input" placeholder="输入系数b" value="0">
+                </div>
+                <div class="input-field">
+                    <label for="coefficient-c" class="input-label">系数 c:</label>
+                    <input type="text" id="coefficient-c" class="number-input" placeholder="输入系数c" value="0">
+                </div>
+            </div>
+
+            <button id="calculate" class="calculate-button">计算方程解</button>
+
+            <div class="info-container">
+                <div class="info-box">
+                    <div class="info-title">基本信息</div>
+                    <div id="equation-form">方程形式: x² + 0x + 0 = 0</div>
+                    <div id="discriminant">判别式 Δ = b²-4ac = 0²-4×1×0 = 0.000000</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-title">抛物线特征</div>
+                    <div id="parabola-direction">抛物线开口向上</div>
+                    <div id="axis-symmetry">对称轴 x = 0.0000000000</div>
+                    <div id="vertex">顶点坐标: (0.0000000000, 0.0000000000)</div>
+                </div>
+            </div>
+
+            <div class="solution-container">
+                <div class="solution-title">方程解</div>
+                <div id="solution-type">有一个重根:</div>
+                <input type="text" id="solution" class="solution-input" value="x₁ = x₂ = 0.000000" readonly>
+            </div>
+
+            <div class="steps-container">
+                <div class="steps-title">详细步骤</div>
+                <ol id="steps-list" class="steps-list">
+                    <li>计算判别式 Δ = 0²-4×1×0 = 0</li>
+                    <li>因为 Δ = 0，方程有一个重根</li>
+                    <li>应用求根公式 x = -b/(2a) = -0/(2×1) = 0.000000</li>
+                </ol>
+            </div>
+
+            <div class="button-group">
+                <button id="copy-result" class="action-button copy-button">复制结果</button>
+                <button id="reset" class="action-button reset-button">重置</button>
+            </div>
+
+            <div class="tool-description">
+                <h3>工具说明</h3>
+                <p>求解一元二次方程 ax² + bx + c = 0 的根</p>
+            </div>
+        </div>
+    </div>
+    <script>
+            // 返回数学工具页面
+            document.getElementById('back-to-math-tools').addEventListener('click', function() {
+                window.location.href = 'math_tools.html';
+            });
+        </script>
+        <script src="quadratic_equation.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科学计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 科学计算器特有样式 */
+        .calculator.scientific {
+            width: 420px;
+        }
+
+        .scientific-buttons {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .scientific-btn {
+            padding: 15px;
+            font-size: 16px;
+            background-color: #e6f7ff;
+            color: #0066cc;
+        }
+
+        .calc-type-switch {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .calc-type-btn {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f0f4f8;
+            font-weight: bold;
+        }
+
+        .calc-type-btn.active {
+            background-color: #0066cc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link active">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="calculator scientific">
+            <div class="calc-type-switch">
+                <button class="calc-type-btn" onclick="window.location.href='index.html'">标准</button>
+                <button class="calc-type-btn active">科学</button>
+            </div>
+            <div class="display">
+                <div id="scientific-result">0</div>
+            </div>
+            <div class="buttons">
+                <button class="btn function" id="scientific-clear">C</button>
+                <button class="btn function" id="scientific-backspace">←</button>
+                <button class="btn function" id="scientific-percentage">%</button>
+                <button class="btn operator" id="scientific-divide">÷</button>
+                <button class="btn scientific-btn" id="scientific-pi">π</button>
+                <button class="btn scientific-btn" id="scientific-e">e</button>
+
+                <button class="btn number" id="scientific-7">7</button>
+                <button class="btn number" id="scientific-8">8</button>
+                <button class="btn number" id="scientific-9">9</button>
+                <button class="btn operator" id="scientific-multiply">×</button>
+                <button class="btn scientific-btn" id="scientific-square">x²</button>
+                <button class="btn scientific-btn" id="scientific-square-root">√x</button>
+
+                <button class="btn number" id="scientific-4">4</button>
+                <button class="btn number" id="scientific-5">5</button>
+                <button class="btn number" id="scientific-6">6</button>
+                <button class="btn operator" id="scientific-subtract">-</button>
+                <button class="btn scientific-btn" id="scientific-cube">x³</button>
+                <button class="btn scientific-btn" id="scientific-cube-root">∛x</button>
+
+                <button class="btn number" id="scientific-1">1</button>
+                <button class="btn number" id="scientific-2">2</button>
+                <button class="btn number" id="scientific-3">3</button>
+                <button class="btn operator" id="scientific-add">+</button>
+                <button class="btn scientific-btn" id="scientific-power">x^y</button>
+                <button class="btn scientific-btn" id="scientific-inverse">1/x</button>
+
+                <button class="btn number" id="scientific-0">0</button>
+                <button class="btn number" id="scientific-decimal">.</button>
+                <button class="btn function" id="scientific-negative">±</button>
+                <button class="btn equals" id="scientific-equals">=</button>
+                <button class="btn scientific-btn" id="scientific-log">log</button>
+                <button class="btn scientific-btn" id="scientific-ln">ln</button>
+            </div>
+            <div class="scientific-buttons">
+                <button class="btn scientific-btn" id="scientific-sin">sin</button>
+                <button class="btn scientific-btn" id="scientific-cos">cos</button>
+                <button class="btn scientific-btn" id="scientific-tan">tan</button>
+                <button class="btn scientific-btn" id="scientific-asin">asin</button>
+                <button class="btn scientific-btn" id="scientific-acos">acos</button>
+                <button class="btn scientific-btn" id="scientific-atan">atan</button>
+
+                <button class="btn scientific-btn" id="scientific-sinh">sinh</button>
+                <button class="btn scientific-btn" id="scientific-cosh">cosh</button>
+                <button class="btn scientific-btn" id="scientific-tanh">tanh</button>
+                <button class="btn scientific-btn" id="scientific-deg">Deg</button>
+                <button class="btn scientific-btn" id="scientific-rad">Rad</button>
+                <button class="btn scientific-btn" id="scientific-factorial">n!</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="scientific.js"></script>
+</body>
+</html>

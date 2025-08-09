@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学工具</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .math-tools-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .math-tool-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .math-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .math-tool-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .math-tool-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .math-tool-link {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .math-tool-link:hover {
+            background-color: #004d99;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="math-tools-container">
+            <h1>数学工具</h1>
+            <p>这里提供各种高级数学计算工具，帮助您解决复杂的数学问题。</p>
+
+            <div class="math-tool-card">
+                <div class="math-tool-title">方程组计算器</div>
+                <div class="math-tool-description">求解线性方程组，支持任意数量的变量和方程。</div>
+                <a href="equation_solver.html" class="math-tool-link">使用计算器</a>
+            </div>
+
+            <div class="math-tool-card">
+                <div class="math-tool-title">四元数计算器</div>
+                <div class="math-tool-description">进行四元数的基本运算，包括加法、减法、乘法和共轭等。</div>
+                <a href="quaternion_calculator.html" class="math-tool-link">使用计算器</a>
+            </div>
+
+            <div class="math-tool-card">
+                <div class="math-tool-title">多项式除法计算器</div>
+                <div class="math-tool-description">执行多项式除法运算，得到商式和余式。</div>
+                <a href="polynomial_division.html" class="math-tool-link">使用计算器</a>
+            </div>
+
+            <div class="math-tool-card">
+                <div class="math-tool-title">有理根计算器</div>
+                <div class="math-tool-description">寻找多项式方程的有理根，基于有理根定理。</div>
+                <a href="rational_root.html" class="math-tool-link">使用计算器</a>
+            </div>
+            <div class="math-tool-card">
+                <div class="math-tool-title">方程替代法计算器</div>
+                <div class="math-tool-description">使用替代法（消元法）解二元一次方程组。</div>
+                <a href="substitution_method.html" class="math-tool-link">使用计算器</a>
+            </div>
+
+            <div class="math-tool-card">
+                <div class="math-tool-title">根计算器</div>
+                <div class="math-tool-description">计算平方根、立方根和任意次根，支持化简根式形式。</div>
+                <a href="root_calculator.html" class="math-tool-link">使用计算器</a>
+            </div>
+
+            <div class="math-tool-card">
+                <div class="math-tool-title">二次方程计算器</div>
+                <div class="math-tool-description">求解一元二次方程，提供判别式、抛物线特征和详细求解步骤。</div>
+                <a href="quadratic_equation.html" class="math-tool-link">使用计算器</a>
+            </div>
+
+            <div class="math-tool-card">
+                <div class="math-tool-title">完美平方三项式计算器</div>
+                <div class="math-tool-description">判断三项式是否为完美平方三项式并显示因式分解结果。</div>
+                <a href="perfect_square_trinomial.html" class="math-tool-link">使用计算器</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

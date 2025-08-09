@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有理根计算器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .rational-root-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .polynomial-input-group {
+            margin-bottom: 20px;
+        }
+
+        .degree-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .degree-label {
+            margin-right: 10px;
+        }
+
+        .coefficients-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .coefficient-input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .coefficient-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .power-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .result-display {
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .roots-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .root-item {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .polynomial-display {
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+        }
+
+        #find-roots {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .process-container {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            height: 150px;
+            overflow-y: auto;
+        }
+
+        .result-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .copy-button, .clear-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .copy-button {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .clear-button {
+            background-color: #ffcccc;
+            color: #cc0000;
+        }
+
+        .tool-description {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">多功能计算器</div>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">标准计算器</a>
+                <a href="scientific.html" class="navbar-link">科学计算器</a>
+                <a href="math_tools.html" class="navbar-link active">数学工具</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    <div class="calculator-container">
+        <div class="rational-root-container">
+            <h1>有理根计算器</h1>
+            <button id="back-to-math-tools" class="back-to-math-tools" style="margin-bottom: 20px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">← 返回数学工具</button>
+            <p>计算多项式方程的有理根并进行因式分解</p>
+
+            <div class="polynomial-input-group">
+                <h3>多项式次数:</h3>
+                <div class="degree-control">
+                    <select id="polynomial-degree">
+                        <option value="1">一次 (ax + b)</option>
+                        <option value="2" selected>二次 (ax² + bx + c)</option>
+                        <option value="3">三次 (ax³ + bx² + cx + d)</option>
+                        <option value="4">四次 (ax⁴ + bx³ + cx² + dx + e)</option>
+                        <option value="5">五次 (ax⁵ + bx⁴ + cx³ + dx² + ex + f)</option>
+                    </select>
+                </div>
+                <div id="polynomial-coefficients" class="coefficients-input">
+                    <!-- 系数输入框将通过 JavaScript 动态添加 -->
+                </div>
+            </div>
+
+            <button id="find-roots">计算有理根</button>
+
+            <div class="polynomial-display" id="polynomial-display"></div>
+<div class="result-display">
+                <div style="display: flex; justify-content: space-between;">
+                    <h3>可能的有理根:</h3>
+                    <h3>验证的真实根:</h3>
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <div id="possible-roots" class="roots-list">
+                            点击计算按钮开始...
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <div id="valid-roots" class="roots-list">
+                            将显示验证后的真实根...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>计算过程:</h3>
+            <div id="calculation-process" class="process-container">
+                <!-- 计算过程将在这里显示 -->
+            </div>
+
+            <div class="result-controls">
+                <button id="copy-result" class="copy-button">复制结果</button>
+                <button id="clear-result" class="clear-button">清空</button>
+            </div>
+
+            <div class="tool-description">
+                <h3>工具说明</h3>
+                <p>计算多项式方程的有理根并进行因式分解</p>
+            </div>
+        </div>
+    </div>
+    <script>
+            // 返回数学工具页面
+            document.getElementById('back-to-math-tools').addEventListener('click', function() {
+                window.location.href = 'math_tools.html';
+            });
+        </script>
+        <script src="rational_root.js"></script>
+</body>
+</html>
